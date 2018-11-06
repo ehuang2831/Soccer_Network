@@ -9,6 +9,21 @@ import random
 np.random.seed(42)
 Rnd = snap.TRnd(42)
 
+
+def load_PUNGraph(path = None, name = None):
+    '''
+    Helper function to load undirected graphs.
+    Check that the respective .txt files are in the same folder as this script;
+    if not, change the paths below as required.
+    '''
+
+    graph_name = path + '/' + name
+    
+    G = snap.LoadEdgeList(snap.PUNGraph, graph_name, 0, 1)
+    
+    return G
+
+
 """
     basic stats for a SNAP graph G
 """
