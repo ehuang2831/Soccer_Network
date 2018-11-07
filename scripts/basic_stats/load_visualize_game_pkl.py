@@ -66,5 +66,11 @@ if __name__ == '__main__':
     # 442366 {'away_team_goal_list': ['Aguero, Sergio', 'Dzeko, Edin'], 'home_team_name': 'Reading', 'home_team_id': 108, 'away_team_name': 'Manchester City', 'team_id_goal_list': [43, 43], 'away_team_id': 43, 'home_team_goal_list': []}
     # 442367 {'away_team_goal_list': ['Dempsey, Clint', 'Adebayor, Emmanuel'], 'home_team_name': 'Stoke City', 'home_team_id': 110, 'away_team_name': 'Tottenham Hotspur', 'team_id_goal_list': [110, 6, 6], 'away_team_id': 6, 'home_team_goal_list': ["N'Zonzi, Steven"]}
 
+    # EPL MATCHES DICT
+    ########################################
+    epl_graph_pkl_fname = DATA_DIR + '/EPL_Games.pkl' 
+    epl_graph_dict = load_pkl(fname = epl_graph_pkl_fname)
 
+    for k,v in epl_graph_dict.iteritems():
+        print k, len(v)
 
