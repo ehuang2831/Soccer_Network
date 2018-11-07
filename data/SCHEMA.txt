@@ -1,0 +1,40 @@
+
+9 elements
+
+- key match_id:
+
+    v[0]: home (team_ids), away (team_ids)
+
+    v[1]: home events dict
+        - key: tuple of (player 1, player 2) passes
+            player 1, 'GAIN'
+            player 1, 'LOSS'
+            player 1, 'GOAL'
+
+    v[2]: away events dict
+
+    v[3]: home player time overlap dict
+
+        (19714.0, 49323.0): [56, 94]
+
+        player A, player B: [when started playing, when ended playing]
+
+        [0, inf]: did not play together
+
+        [player A, Self] : how long player played
+
+    v[4]: away team time overlap dict
+
+    v[5]: home time-weighted action dict
+
+            (player A, player B): num_passes/time duration of overlap from v[3/4]
+            - also has special events, Loss, Gain, Goal
+
+    v[6]: away time-weighted
+
+    v[7]: array of home team player ids
+
+    v[8]: array of away team player ids
+
+
+
