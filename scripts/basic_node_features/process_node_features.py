@@ -49,9 +49,44 @@ if __name__ == '__main__':
     # game dictionaries
     ########################################
     simple_game_features_pkl = DATA_DIR + '/simple_features_by_game.pkl'
-    simple_game_features_dict = load_pkl(fname = simple_game_features_pkl)
+    simple_game_features_df = load_pkl(fname = simple_game_features_pkl)
 
-    #simple_game_team_features_pkl = DATA_DIR + '/simple_features_by_team_game.pkl'
-    #simple_game_team_features_dict = load_pkl(fname = simple_game_team_features_pkl)
+    # ['match_id', 'home_shot_rate', 'home_gain_rate', 'home_loss_rate', 'home_pass_rate', 'home_max_pass', 'home_min_pass', 'home_number_players', 'away_shot_rate', 'away_gain_rate', 'away_loss_rate', 'away_pass_rate', 'away_max_pass', 'away_min_pass', 'away_number_players', 'home_team_id', 'away_team_id', 'goal_dif', 'result']
+    print list(simple_game_features_df)
+
+    blacklist_features = ['match_id', 'goal_dif', 'result', 'home_team_id', 'away_team_id']
+
+    X_game_features_list = [feat for feat in list(simple_game_features_df) if feat not in blacklist_features]
+    X_game_df = simple_game_features_df[X_game_features_list]
+    Y_game_df = simple_game_features_df['result']
+
+
+    print X_game_df.head()
+    print Y_game_df.head()
+    print ' '
+    print ' '
+
+
+    ########################################
+    print '########'
+    print 'NOW PROCESS GAME TEAM DF'
+    print ' '
+    simple_game_team_features_pkl = DATA_DIR + '/simple_features_by_team_game.pkl'
+    simple_game_team_features_df = load_pkl(fname = simple_game_team_features_pkl)
+
+    blacklist_features = ['match_id', 'team_id', 'goals', 'result']
+    # ['match_id', 'team_id', 'shot_rate', 'gain_rate', 'loss_rate', 'pass_rate', 'max_pass', 'min_pass', 'number_players', 'home', 'goals', 'result']
+    print list(simple_game_team_features_df)
+
+    X_game_team_features_list = [feat for feat in list(simple_game_team_features_df) if feat not in blacklist_features]
+
+    X_game_team_df = simple_game_team_features_df[X_game_team_features_list]
+    Y_game_team_df = simple_game_team_features_df['result']
+
+    print X_game_team_df.head()
+    print Y_game_team_df.head()
+    print ' '
+    print ' '
+
 
 
