@@ -33,7 +33,6 @@ if __name__ == '__main__':
     league_list = ['epl']
 
 
-
     for league in league_list:
         csv_fname = '/'.join([GAME_CSV_DIR, league,  league + '.csv'])
 
@@ -58,48 +57,56 @@ if __name__ == '__main__':
             print ' ' 
             print '## ' 
 
-        per_player_goal_dict = {}
 
-        for idx, row in df.iterrows():
+        PER_PLAYER_GOAL_DICT_CREATED = True
 
-            if row['description'] == 'Goal':
-                player_name = row['playerName']
-                player_id = row['player_id']
-                team_id = row['team_id']
-                playerPosition = row['playerPosition']
+        if not PER_PLAYER_GOAL_DICT_CREATED:
 
-                success = False
-                if row['outcome'] == 1:
-                    success = True
-                else:
+            per_player_goal_dict = {}
+
+            for idx, row in df.iterrows():
+
+                if row['description'] == 'Goal':
+                    player_name = row['playerName']
+                    player_id = row['player_id']
+                    team_id = row['team_id']
+                    playerPosition = row['playerPosition']
+
                     success = False
-
-                if player_id not in per_player_goal_dict.keys():
-                    goal_results_dict = {}
-                    goal_results_dict['playerName'] = player_name
-                    goal_results_dict['team_id'] = team_id
-                    goal_results_dict['playerPosition'] = playerPosition
-
-                    if success:
-                        goal_results_dict['success_goals'] = 1
-                        goal_results_dict['fail_goals'] = 0
+                    if row['outcome'] == 1:
+                        success = True
                     else:
-                        goal_results_dict['success_goals'] = 0
-                        goal_results_dict['fail_goals'] = 1
+                        success = False
 
-                    per_player_goal_dict[player_id] = goal_results_dict
-                else:
-                    goal_results_dict  = per_player_goal_dict[player_id]
-                   
-                    if success:
-                        goal_results_dict['success_goals'] += 1
+                    if player_id not in per_player_goal_dict.keys():
+                        goal_results_dict = {}
+                        goal_results_dict['playerName'] = player_name
+                        goal_results_dict['team_id'] = team_id
+                        goal_results_dict['playerPosition'] = playerPosition
+
+                        if success:
+                            goal_results_dict['success_goals'] = 1
+                            goal_results_dict['fail_goals'] = 0
+                        else:
+                            goal_results_dict['success_goals'] = 0
+                            goal_results_dict['fail_goals'] = 1
+
+                        per_player_goal_dict[player_id] = goal_results_dict
                     else:
-                        goal_results_dict['fail_goals'] += 1
-                
-                print ' '
-                print goal_results_dict
-                print ' '
+                        goal_results_dict  = per_player_goal_dict[player_id]
+                       
+                        if success:
+                            goal_results_dict['success_goals'] += 1
+                        else:
+                            goal_results_dict['fail_goals'] += 1
+                    
+                    print ' '
+                    print goal_results_dict
+                    print ' '
 
-        per_player_goal_dict_fname = 'results/' + league + '_per_player_goal_dict.pkl'
-        write_pkl(fname = per_player_goal_dict_fname, input_dict = per_player_goal_dict)
+            per_player_goal_dict_fname = 'results/' + league + '_per_player_goal_dict.pkl'
+            write_pkl(fname = per_player_goal_dict_fname, input_dict = per_player_goal_dict)
 
+        else: 
+            per_player_goal_dict_fname = 'results/' + league + '_per_player_goal_dict.pkl'
+            per_player_goal_dict = load_pkl(fname = per_player_goal_dict_fname)
