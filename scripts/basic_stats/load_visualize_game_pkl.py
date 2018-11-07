@@ -74,3 +74,12 @@ if __name__ == '__main__':
     for k,v in epl_graph_dict.iteritems():
         print k, len(v)
 
+
+    # game dictionaries
+    ########################################
+    simple_game_features_pkl = DATA_DIR + '/simple_features_by_game.pkl'
+    simple_game_features_dict = load_pkl(fname = simple_game_features_pkl)
+
+    simple_game_team_features_pkl = DATA_DIR + '/simple_features_by_team_game.pkl'
+    simple_game_team_features_dict = load_pkl(fname = simple_game_team_features_pkl)
+
