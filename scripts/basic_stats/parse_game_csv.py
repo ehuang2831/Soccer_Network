@@ -46,9 +46,12 @@ if __name__ == '__main__':
             unique_set = set(df[column_name])
 
             print column_name, ' , : ', len(unique_set)
-
+            
             if len(unique_set) < 10:
-                print column_name, ' , : ', unique_set
+                print column_name, ' , FULL: ', unique_set
+            else:
+                print column_name, ' , PARTIAL: ', list(unique_set)[0:10]
+
             print ' ' 
             print '## ' 
 

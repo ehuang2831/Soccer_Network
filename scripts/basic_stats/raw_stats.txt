@@ -1,0 +1,65 @@
+season_id  , :  1
+season_id  , FULL:  set([2012])
+ 
+## 
+match_id  , :  380
+match_id  , PARTIAL:  [442368, 442369, 442370, 442371, 442372, 442373, 442374, 442375, 442376, 442377]
+ 
+## 
+home_team_id  , :  20
+home_team_id  , PARTIAL:  [35, 110, 43, 4, 6, 7, 8, 1, 11, 108]
+ 
+## 
+home_team_name  , :  20
+home_team_name  , PARTIAL:  ['Liverpool', 'Manchester United', 'Newcastle United', 'Southampton', 'Stoke City', 'Aston Villa', 'West Ham United', 'Manchester City', 'Arsenal', 'Swansea City']
+ 
+## 
+away_team_id  , :  20
+away_team_id  , PARTIAL:  [1, 43, 4, 6, 7, 8, 11, 108, 45, 110]
+ 
+## 
+away_team_name  , :  20
+away_team_name  , PARTIAL:  ['Queens Park Rangers', 'Southampton', 'Manchester United', 'Liverpool', 'Fulham', 'Manchester City', 'Tottenham Hotspur', 'Norwich City', 'Stoke City', 'Aston Villa']
+ 
+## 
+id  , :  648883
+id  , PARTIAL:  [1884291072, 525336577, 123731970, 1722985131, 920649732, 1138753537, 1288699913, 2015363082, 116391947, 59277479]
+ 
+## 
+event_id  , :  1160
+event_id  , PARTIAL:  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ 
+## 
+period_id  , :  4
+period_id  , FULL:  set([16, 1, 2, 14])
+ 
+## 
+team_id  , :  20
+team_id  , PARTIAL:  [1, 3, 4, 6, 7, 8, 11, 108, 45, 110]
+ 
+## 
+player_id  , :  9921
+player_id  , PARTIAL:  [nan, nan, 3.0, nan, nan, nan, nan, nan, nan, nan]
+ 
+## 
+playerName  , :  524
+playerName  , PARTIAL:  [nan, 'Ferguson, Shane', 'Barry, Gareth', 'Enrique Sanchez Diaz, Jose', 'Osman, Leon', 'Lambert, Rickie', 'Rosenberg, Markus', 'Kane, Harry', 'Sturridge, Daniel', 'Gueye, Magaye']
+ 
+## 
+playerPosition  , :  6
+playerPosition  , FULL:  set([nan, 'Striker', 'Defender', 'Midfielder', 'Goalkeeper', 'Substitute'])
+ 
+## 
+type  , :  46
+type  , PARTIAL:  [1, 2, 3, 4, 5, 6, 7, 8, 10, 11]
+ 
+## 
+description  , :  46
+description  , PARTIAL:  ['Shield ball opp', 'End', 'Goal', 'Good skill', 'Ball recovery', 'Deleted event', 'Take On', 'Interception', 'Contentious referee decision', 'Start']
+ 
+## 
+outcome  , :  2
+outcome  , FULL:  set([0, 1])
+
+
+
