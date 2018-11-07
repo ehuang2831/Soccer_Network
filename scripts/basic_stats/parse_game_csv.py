@@ -44,19 +44,24 @@ if __name__ == '__main__':
 
         columns_of_interest = ['season_id', 'match_id', 'home_team_id', 'home_team_name', 'away_team_id', 'away_team_name', 'id', 'event_id', 'period_id', 'team_id', 'player_id', 'playerName', 'playerPosition', 'type', 'description', 'outcome']
 
-        for column_name in columns_of_interest:
-            unique_set = set(df[column_name])
+        COLUMN_INFO_PARSED = True
 
-            print column_name, ' , : ', len(unique_set)
-            
-            if len(unique_set) < 10:
-                print column_name, ' , FULL: ', unique_set
-            else:
-                print column_name, ' , PARTIAL: ', list(unique_set)[0:10]
+        if not COLUMN_INFO_PARSED:
 
-            print ' ' 
-            print '## ' 
+            for column_name in columns_of_interest:
+                unique_set = set(df[column_name])
 
+                print column_name, ' , : ', len(unique_set)
+                
+                if len(unique_set) < 10:
+                    print column_name, ' , FULL: ', unique_set
+                else:
+                    print column_name, ' , PARTIAL: ', list(unique_set)[0:10]
+
+                print ' ' 
+                print '## ' 
+        else:
+            pass
 
         PER_PLAYER_GOAL_DICT_CREATED = True
 
@@ -110,3 +115,57 @@ if __name__ == '__main__':
         else: 
             per_player_goal_dict_fname = 'results/' + league + '_per_player_goal_dict.pkl'
             per_player_goal_dict = load_pkl(fname = per_player_goal_dict_fname)
+
+        MATCH_GOAL_DICT_CREATED = False
+
+        if not MATCH_GOAL_DICT_CREATED:
+
+            match_goal_dict = {}
+
+            match_id_list = list(set(df['match_id']))
+
+            for match_id in match_id_list: 
+                match_df = df[df['match_id'] == match_id]
+
+                home_team_id = list(set(match_df['home_team_id']))[0]
+                home_team_name = list(set(match_df['home_team_name']))[0]
+
+                away_team_id = list(set(match_df['away_team_id']))[0]
+                away_team_name = list(set(match_df['away_team_name']))[0]
+
+                home_team_goal_list = []
+                away_team_goal_list = []
+                team_id_goal_list = []
+
+                for i, row in match_df.iterrows():
+                    if row['description'] == 'Goal':
+                       team_id = row['team_id']
+                       team_id_goal_list.append(team_id)
+
+                       if team_id == home_team_id:
+                           home_team_goal_list.append(row['playerName'])
+                       elif team_id == away_team_id:
+                           away_team_goal_list.append(row['playerName'])
+                       else:
+                           pass
+                
+                single_match_results_dict = {}
+                
+                single_match_results_dict['home_team_goal_list'] = home_team_goal_list
+
+                single_match_results_dict['away_team_goal_list'] = away_team_goal_list
+
+                single_match_results_dict['team_id_goal_list'] = team_id_goal_list
+                
+                single_match_results_dict['home_team_id'] = home_team_id
+                
+                single_match_results_dict['home_team_name'] = home_team_name
+
+                single_match_results_dict['away_team_id'] = away_team_id
+                
+                single_match_results_dict['away_team_name'] = away_team_name
+
+                match_goal_dict[match_id] = single_match_results_dict 
+            
+            match_goal_dict_fname = 'results/' + league + '_match_goal_dict.pkl'
+            write_pkl(fname = match_goal_dict_fname, input_dict = match_goal_dict)
