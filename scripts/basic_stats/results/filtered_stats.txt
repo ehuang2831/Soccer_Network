@@ -1,0 +1,8 @@
+The EPL consists of a single season in 2012, consisting
+of 380 matches between 20 teams. Examples of EPL
+teams are Liverpool, Manchester United, Southampton, etc.
+
+The dataset consists of 648,883 unique plays made by 524 unique players, who are annotated to have 5 positions of Strikers, Defenders, Midfielders, Goalkeepers, and Substitutes.
+
+Each play is annotated using a standardized vocabulary of 46 actions, including 'Goals', 'Interceptions', and even 'Contentious Referee Decisions' and whether it was successful or not (simply attempted).
+ 
