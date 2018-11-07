@@ -1,0 +1,6 @@
+# overall goal dataset
+game_id, home_team_id, home_team_name, away_team_id, away_team_name, num_home_team_goals_{ATTEMPT}, num_away_team_goals_{ATTEMPT}, winner_team_id, winner_team_name
+
+# distro of goals by player
+player_id, player_team, total_goals, total_goals_attempted, games_played
+
