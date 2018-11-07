@@ -9,6 +9,11 @@ from scipy.sparse import *
 import itertools
 import pandas
 
+
+from sklearn.decomposition import PCA
+from sklearn.manifold import TSNE
+
+
 # configure paths
 ####################
 ROOT_SOCCER_DIR=os.environ['ROOT_SOCCER_DIR']
@@ -67,6 +72,17 @@ if __name__ == '__main__':
     print ' '
 
 
+    tsne_game = TSNE(n_components=2, verbose=1, perplexity=40, n_iter=1000)
+    tsne_game_results = tsne_game.fit_transform(X_game_df)
+
+    vis_x = tsne_game_results[:, 0]
+    vis_y = tsne_game_results[:, 1]
+    plt.scatter(vis_x, vis_y, c=Y_game_df)
+    plt.colorbar(ticks=range(2))
+    #plt.clim(-0.5, 9.5)
+    plt.savefig('game_tsne.pdf')
+    plt.close()
+
     ########################################
     print '########'
     print 'NOW PROCESS GAME TEAM DF'
@@ -81,12 +97,21 @@ if __name__ == '__main__':
     X_game_team_features_list = [feat for feat in list(simple_game_team_features_df) if feat not in blacklist_features]
 
     X_game_team_df = simple_game_team_features_df[X_game_team_features_list]
-    Y_game_team_df = simple_game_team_features_df['result']
+    Y_game_team_result_df = simple_game_team_features_df['result']
+    Y_game_team_teamID_df = simple_game_team_features_df['team_id']
 
     print X_game_team_df.head()
-    print Y_game_team_df.head()
+    print Y_game_team_result_df.head()
     print ' '
     print ' '
 
+    tsne_game_team = TSNE(n_components=2, verbose=1, perplexity=40, n_iter=1000)
+    tsne_game_team_results = tsne_game.fit_transform(X_game_team_df)
 
-
+    vis_x = tsne_game_team_results[:, 0]
+    vis_y = tsne_game_team_results[:, 1]
+    plt.scatter(vis_x, vis_y, c=Y_game_team_teamID_df)
+    plt.colorbar(ticks=range(len(Y_game_team_teamID_df)))
+    #plt.clim(-0.5, 9.5)
+    plt.savefig('team_game_tsne.pdf')
+    plt.close()
