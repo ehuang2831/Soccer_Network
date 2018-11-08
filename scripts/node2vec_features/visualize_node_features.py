@@ -8,6 +8,7 @@ import sys,os
 from scipy.sparse import *
 import itertools
 import pandas
+import sklearn
 
 from matplotlib.pyplot import cm
 
@@ -77,6 +78,8 @@ if __name__ == '__main__':
     X_game_df = node2vec_game_features_df[X_game_features_list]
     Y_game_df = node2vec_game_features_df['result']
 
+    X_norm_game_df = sklearn.preprocessing.normalize(X_game_df, axis=1, copy=True, return_norm=False)
+
     print X_game_df.head()
     print Y_game_df.head()
     print ' '
@@ -84,7 +87,11 @@ if __name__ == '__main__':
     label_map = {-1: 'home loss', 0: 'draw', 1: 'home win'} 
 
 
-    run_and_plot_TSNE(X_df = X_game_df, Y_df = Y_game_df, label_map = label_map, plot_fname = 'game_tsne.pdf', title_str = 'T-SNE on home and away team embeddings (node2vec)')
+    run_and_plot_TSNE(X_df = X_game_df, Y_df = Y_game_df, label_map = label_map, plot_fname = 'node2vec_unnorm_game_tsne.pdf', title_str = 'T-SNE on home and away team embeddings (node2vec)')
+
+    # now normalize and plot
+    run_and_plot_TSNE(X_df = X_norm_game_df, Y_df = Y_game_df, label_map = label_map, plot_fname = 'node2vec_NORM_game_tsne.pdf', title_str = 'T-SNE on home and away team embeddings (normalized, node2vec)')
+
 
     #########################################
     print '########'
@@ -103,16 +110,21 @@ if __name__ == '__main__':
     Y_game_team_result_df = node2vec_game_team_features_df['result']
     Y_game_team_teamID_df = node2vec_game_team_features_df['team_id']
 
+    X_norm_game_team_df = sklearn.preprocessing.normalize(X_game_team_df, axis=1, copy=True, return_norm=False)
+    
     label_result_map = {-1: 'loss', 0: 'draw', 1: 'win'}
-    run_and_plot_TSNE(X_df = X_game_team_df, Y_df = Y_game_team_result_df, label_map = label_result_map, plot_fname = 'game_team_result_tsne.pdf', title_str = 'T-SNE on team feature vectors (node2vec), colored by game result')
+    run_and_plot_TSNE(X_df = X_game_team_df, Y_df = Y_game_team_result_df, label_map = label_result_map, plot_fname = 'node2vec_unnorm_game_team_result_tsne.pdf', title_str = 'T-SNE on team feature vectors (node2vec), colored by game result')
+
+    run_and_plot_TSNE(X_df = X_norm_game_team_df, Y_df = Y_game_team_result_df, label_map = label_result_map, plot_fname = 'node2vec_NORM_game_team_result_tsne.pdf', title_str = 'T-SNE on team feature vectors (normalized, node2vec), colored by game result')
 
     label_teamId_map = {}
 
     for team_id in set(node2vec_game_team_features_df['team_id']):
         label_teamId_map[team_id] = 'team ' + str(team_id)
 
-    run_and_plot_TSNE(X_df = X_game_team_df, Y_df = Y_game_team_teamID_df, label_map = label_teamId_map, plot_fname = 'game_team_teamId_tsne.pdf', title_str = 'T-SNE on team feature vectors (node2vec), colored by team id')
+    run_and_plot_TSNE(X_df = X_game_team_df, Y_df = Y_game_team_teamID_df, label_map = label_teamId_map, plot_fname = 'node2vec_unnorm_game_team_teamId_tsne.pdf', title_str = 'T-SNE on team feature vectors (node2vec), colored by team id')
 
+    run_and_plot_TSNE(X_df = X_norm_game_team_df, Y_df = Y_game_team_teamID_df, label_map = label_teamId_map, plot_fname = 'node2vec_NORM_game_team_teamId_tsne.pdf', title_str = 'T-SNE on team feature vectors (normalized, node2vec), colored by team id')
 
     
      
