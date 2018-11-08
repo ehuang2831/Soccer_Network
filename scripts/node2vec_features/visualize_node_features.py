@@ -65,17 +65,17 @@ if __name__ == '__main__':
 
     # game dictionaries
     ########################################
-    simple_game_features_pkl = DATA_DIR + '/simple_features_by_game.pkl'
-    simple_game_features_df = load_pkl(fname = simple_game_features_pkl)
+    node2vec_game_features_pkl = DATA_DIR + '/node2vec_by_game.pkl'
+    node2vec_game_features_df = load_pkl(fname = node2vec_game_features_pkl)
 
     # ['match_id', 'home_shot_rate', 'home_gain_rate', 'home_loss_rate', 'home_pass_rate', 'home_max_pass', 'home_min_pass', 'home_number_players', 'away_shot_rate', 'away_gain_rate', 'away_loss_rate', 'away_pass_rate', 'away_max_pass', 'away_min_pass', 'away_number_players', 'home_team_id', 'away_team_id', 'goal_dif', 'result']
-    print list(simple_game_features_df)
+    print list(node2vec_game_features_df)
 
     blacklist_features = ['match_id', 'goal_dif', 'result', 'home_team_id', 'away_team_id']
 
-    X_game_features_list = [feat for feat in list(simple_game_features_df) if feat not in blacklist_features]
-    X_game_df = simple_game_features_df[X_game_features_list]
-    Y_game_df = simple_game_features_df['result']
+    X_game_features_list = [feat for feat in list(node2vec_game_features_df) if feat not in blacklist_features]
+    X_game_df = node2vec_game_features_df[X_game_features_list]
+    Y_game_df = node2vec_game_features_df['result']
 
     print X_game_df.head()
     print Y_game_df.head()
@@ -84,34 +84,34 @@ if __name__ == '__main__':
     label_map = {-1: 'home loss', 0: 'draw', 1: 'home win'} 
 
 
-    run_and_plot_TSNE(X_df = X_game_df, Y_df = Y_game_df, label_map = label_map, plot_fname = 'game_tsne.pdf', title_str = 'T-SNE on home and away team embeddings')
+    run_and_plot_TSNE(X_df = X_game_df, Y_df = Y_game_df, label_map = label_map, plot_fname = 'game_tsne.pdf', title_str = 'T-SNE on home and away team embeddings (node2vec)')
 
     #########################################
     print '########'
     print 'NOW PROCESS GAME TEAM DF'
     print ' '
-    simple_game_team_features_pkl = DATA_DIR + '/simple_features_by_team_game.pkl'
-    simple_game_team_features_df = load_pkl(fname = simple_game_team_features_pkl)
+    node2vec_game_team_features_pkl = DATA_DIR + '/node2vec_by_team_game.pkl'
+    node2vec_game_team_features_df = load_pkl(fname = node2vec_game_team_features_pkl)
 
     blacklist_features = ['match_id', 'team_id', 'goals', 'result']
     # ['match_id', 'team_id', 'shot_rate', 'gain_rate', 'loss_rate', 'pass_rate', 'max_pass', 'min_pass', 'number_players', 'home', 'goals', 'result']
-    print list(simple_game_team_features_df)
+    print list(node2vec_game_team_features_df)
 
-    X_game_team_features_list = [feat for feat in list(simple_game_team_features_df) if feat not in blacklist_features]
+    X_game_team_features_list = [feat for feat in list(node2vec_game_team_features_df) if feat not in blacklist_features]
 
-    X_game_team_df = simple_game_team_features_df[X_game_team_features_list]
-    Y_game_team_result_df = simple_game_team_features_df['result']
-    Y_game_team_teamID_df = simple_game_team_features_df['team_id']
+    X_game_team_df = node2vec_game_team_features_df[X_game_team_features_list]
+    Y_game_team_result_df = node2vec_game_team_features_df['result']
+    Y_game_team_teamID_df = node2vec_game_team_features_df['team_id']
 
     label_result_map = {-1: 'loss', 0: 'draw', 1: 'win'}
-    run_and_plot_TSNE(X_df = X_game_team_df, Y_df = Y_game_team_result_df, label_map = label_result_map, plot_fname = 'game_team_result_tsne.pdf', title_str = 'T-SNE on team feature vectors, colored by game result')
+    run_and_plot_TSNE(X_df = X_game_team_df, Y_df = Y_game_team_result_df, label_map = label_result_map, plot_fname = 'game_team_result_tsne.pdf', title_str = 'T-SNE on team feature vectors (node2vec), colored by game result')
 
     label_teamId_map = {}
 
-    for team_id in set(simple_game_team_features_df['team_id']):
+    for team_id in set(node2vec_game_team_features_df['team_id']):
         label_teamId_map[team_id] = 'team ' + str(team_id)
 
-    run_and_plot_TSNE(X_df = X_game_team_df, Y_df = Y_game_team_teamID_df, label_map = label_teamId_map, plot_fname = 'game_team_teamId_tsne.pdf', title_str = 'T-SNE on team feature vectors, colored by team id')
+    run_and_plot_TSNE(X_df = X_game_team_df, Y_df = Y_game_team_teamID_df, label_map = label_teamId_map, plot_fname = 'game_team_teamId_tsne.pdf', title_str = 'T-SNE on team feature vectors (node2vec), colored by team id')
 
 
     
