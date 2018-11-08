@@ -75,13 +75,36 @@ if __name__ == '__main__':
     tsne_game = TSNE(n_components=2, verbose=1, perplexity=40, n_iter=1000)
     tsne_game_results = tsne_game.fit_transform(X_game_df)
 
-    vis_x = tsne_game_results[:, 0]
-    vis_y = tsne_game_results[:, 1]
-    plt.scatter(vis_x, vis_y, c=Y_game_df)
-    plt.colorbar(ticks=range(2))
-    #plt.clim(-0.5, 9.5)
+    #vis_x = tsne_game_results[:, 0]
+    #vis_y = tsne_game_results[:, 1]
+    #plt.scatter(vis_x, vis_y, c=Y_game_df)
+    ##plt.colorbar(ticks=range(2))
+    ##plt.clim(-0.5, 9.5)
+    #plt.legend()
+    #plt.savefig('game_tsne.pdf')
+    #plt.close()
+
+    colors = ['red', 'green', 'blue', 'yellow', 'purple']
+
+    game_outcomes = list(set(Y_game_df))
+
+    label_map = {-1: 'home loss', 0: 'draw', 1: 'home win'} 
+
+    for i, outcome in enumerate(game_outcomes):
+
+        subset_indx = Y_game_df == outcome
+
+        vis_x = tsne_game_results[subset_indx, 0]
+        vis_y = tsne_game_results[subset_indx, 1]
+    
+        plt.scatter(vis_x, vis_y, c=colors[i], label = label_map[outcome])
+
+    ##plt.colorbar(ticks=range(2))
+    ##plt.clim(-0.5, 9.5)
+    plt.legend()
     plt.savefig('game_tsne.pdf')
     plt.close()
+
 
     ########################################
     print '########'
@@ -110,8 +133,8 @@ if __name__ == '__main__':
 
     vis_x = tsne_game_team_results[:, 0]
     vis_y = tsne_game_team_results[:, 1]
-    plt.scatter(vis_x, vis_y, c=Y_game_team_teamID_df)
-    plt.colorbar(ticks=range(len(Y_game_team_teamID_df)))
+    plt.scatter(vis_x, vis_y, c=Y_game_team_result_df)
+    #plt.colorbar(ticks=range(len(Y_game_team_result_df)))
     #plt.clim(-0.5, 9.5)
     plt.savefig('team_game_tsne.pdf')
     plt.close()
