@@ -37,6 +37,17 @@ if __name__ == '__main__':
         csv_fname = '/'.join([GAME_CSV_DIR, league,  league + '.csv'])
 
         df = pandas.read_csv(csv_fname)
+    
+
+        player_info_dict = {}
+        PLAYER_INFO_DICT_CREATED = False
+
+        for k,v in df.iterrows():
+            player_info_dict[v['player_id']] = {'playerName': v['playerName'], 'playerPosition': v['playerPosition']}
+
+
+        basic_player_info_dict_fname = DATA_DIR + '/PLAYER_INFO_' + league + '.pkl'
+        write_pkl(fname = basic_player_info_dict_fname, input_dict = player_info_dict)
 
         print 'COLUMNS: ', list(df)
 
@@ -116,7 +127,7 @@ if __name__ == '__main__':
             per_player_goal_dict_fname = 'results/' + league + '_per_player_goal_dict.pkl'
             per_player_goal_dict = load_pkl(fname = per_player_goal_dict_fname)
 
-        MATCH_GOAL_DICT_CREATED = False
+        MATCH_GOAL_DICT_CREATED = True
 
         if not MATCH_GOAL_DICT_CREATED:
 
