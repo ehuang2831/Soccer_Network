@@ -87,34 +87,22 @@ if __name__ == '__main__':
     run_and_plot_TSNE(X_df = X_game_df, Y_df = Y_game_df, label_map = label_map, plot_fname = 'game_tsne.pdf', title_str = 'T-SNE on home and away team embeddings')
 
     #########################################
-    #print '########'
-    #print 'NOW PROCESS GAME TEAM DF'
-    #print ' '
-    #simple_game_team_features_pkl = DATA_DIR + '/simple_features_by_team_game.pkl'
-    #simple_game_team_features_df = load_pkl(fname = simple_game_team_features_pkl)
+    print '########'
+    print 'NOW PROCESS GAME TEAM DF'
+    print ' '
+    simple_game_team_features_pkl = DATA_DIR + '/simple_features_by_team_game.pkl'
+    simple_game_team_features_df = load_pkl(fname = simple_game_team_features_pkl)
 
-    #blacklist_features = ['match_id', 'team_id', 'goals', 'result']
-    ## ['match_id', 'team_id', 'shot_rate', 'gain_rate', 'loss_rate', 'pass_rate', 'max_pass', 'min_pass', 'number_players', 'home', 'goals', 'result']
-    #print list(simple_game_team_features_df)
+    blacklist_features = ['match_id', 'team_id', 'goals', 'result']
+    # ['match_id', 'team_id', 'shot_rate', 'gain_rate', 'loss_rate', 'pass_rate', 'max_pass', 'min_pass', 'number_players', 'home', 'goals', 'result']
+    print list(simple_game_team_features_df)
 
-    #X_game_team_features_list = [feat for feat in list(simple_game_team_features_df) if feat not in blacklist_features]
+    X_game_team_features_list = [feat for feat in list(simple_game_team_features_df) if feat not in blacklist_features]
 
-    #X_game_team_df = simple_game_team_features_df[X_game_team_features_list]
-    #Y_game_team_result_df = simple_game_team_features_df['result']
-    #Y_game_team_teamID_df = simple_game_team_features_df['team_id']
+    X_game_team_df = simple_game_team_features_df[X_game_team_features_list]
+    Y_game_team_result_df = simple_game_team_features_df['result']
+    Y_game_team_teamID_df = simple_game_team_features_df['team_id']
 
-    #print X_game_team_df.head()
-    #print Y_game_team_result_df.head()
-    #print ' '
-    #print ' '
+    label_result_map = {-1: 'loss', 0: 'draw', 1: 'win'}
 
-    #tsne_game_team = TSNE(n_components=2, verbose=1, perplexity=40, n_iter=1000)
-    #tsne_game_team_results = tsne_game.fit_transform(X_game_team_df)
-
-    #vis_x = tsne_game_team_results[:, 0]
-    #vis_y = tsne_game_team_results[:, 1]
-    #plt.scatter(vis_x, vis_y, c=Y_game_team_result_df)
-    ##plt.colorbar(ticks=range(len(Y_game_team_result_df)))
-    ##plt.clim(-0.5, 9.5)
-    #plt.savefig('team_game_tsne.pdf')
-    #plt.close()
+    run_and_plot_TSNE(X_df = X_game_team_df, Y_df = Y_game_team_result_df, label_map = label_result_map, plot_fname = 'game_team_result_tsne.pdf', title_str = 'T-SNE on team feature vectors, colored by game result')
