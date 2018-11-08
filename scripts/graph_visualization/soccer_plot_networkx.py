@@ -50,7 +50,7 @@ epl_graph_columns = list(epl_graph_dict)
 
 # PER PLAYER GOAL DICT
 ########################################
-per_player_goal_dict_fname = DATA_DIR + '/' + league + '_per_player_goal_dict.pkl'
+per_player_goal_dict_fname = DATA_DIR + '/PLAYER_INFO_epl.pkl'
 per_player_goal_dict = load_pkl(fname = per_player_goal_dict_fname)
 
 match_ids = epl_graph_dict.keys()
