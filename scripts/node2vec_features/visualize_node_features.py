@@ -11,10 +11,8 @@ import pandas
 import sklearn
 
 from matplotlib.pyplot import cm
-
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
-
 
 # configure paths
 ####################
@@ -72,7 +70,7 @@ if __name__ == '__main__':
     # ['match_id', 'home_shot_rate', 'home_gain_rate', 'home_loss_rate', 'home_pass_rate', 'home_max_pass', 'home_min_pass', 'home_number_players', 'away_shot_rate', 'away_gain_rate', 'away_loss_rate', 'away_pass_rate', 'away_max_pass', 'away_min_pass', 'away_number_players', 'home_team_id', 'away_team_id', 'goal_dif', 'result']
     print list(node2vec_game_features_df)
 
-    blacklist_features = ['match_id', 'goal_dif', 'result', 'home_team_id', 'away_team_id']
+    blacklist_features = ['match_id', 'goal_dif', 'result', 'home_team', 'away_team']
 
     X_game_features_list = [feat for feat in list(node2vec_game_features_df) if feat not in blacklist_features]
     X_game_df = node2vec_game_features_df[X_game_features_list]
