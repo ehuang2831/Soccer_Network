@@ -97,7 +97,7 @@ if __name__ == '__main__':
     simple_game_team_features_pkl = DATA_DIR + '/simple_features_by_team_game.pkl'
     simple_game_team_features_df = load_pkl(fname = simple_game_team_features_pkl)
 
-    blacklist_features = ['match_id', 'team_id', 'goals', 'result']
+    blacklist_features = ['match_id', 'team_id', 'goals', 'result', 'home']
     # ['match_id', 'team_id', 'shot_rate', 'gain_rate', 'loss_rate', 'pass_rate', 'max_pass', 'min_pass', 'number_players', 'home', 'goals', 'result']
     print list(simple_game_team_features_df)
 
