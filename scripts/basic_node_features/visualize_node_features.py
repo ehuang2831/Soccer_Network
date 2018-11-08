@@ -32,7 +32,7 @@ GAME_CSV_DIR = DATA_DIR + '/raw_soccer_csv/'
 
 from basic_snap_utils import *
 from textfile_utils import *
-
+import sklearn
 
 
 def run_and_plot_TSNE(X_df = None, Y_df = None, label_map = None, plot_fname = None, title_str = None):
@@ -77,14 +77,18 @@ if __name__ == '__main__':
     X_game_df = simple_game_features_df[X_game_features_list]
     Y_game_df = simple_game_features_df['result']
 
+    X_norm_game_df = sklearn.preprocessing.normalize(X_game_df, axis=1, copy=True, return_norm=False)
+
     print X_game_df.head()
     print Y_game_df.head()
     print ' '
     print ' '
     label_map = {-1: 'home loss', 0: 'draw', 1: 'home win'} 
 
-
     run_and_plot_TSNE(X_df = X_game_df, Y_df = Y_game_df, label_map = label_map, plot_fname = 'game_tsne.pdf', title_str = 'T-SNE on home and away team embeddings')
+
+    run_and_plot_TSNE(X_df = X_norm_game_df, Y_df = Y_game_df, label_map = label_map, plot_fname = 'game_NORM_tsne.pdf', title_str = 'T-SNE on home and away team embeddings (normalized)')
+
 
     #########################################
     print '########'
@@ -103,8 +107,13 @@ if __name__ == '__main__':
     Y_game_team_result_df = simple_game_team_features_df['result']
     Y_game_team_teamID_df = simple_game_team_features_df['team_id']
 
+    X_norm_game_team_df = sklearn.preprocessing.normalize(X_game_team_df, axis=1, copy=True, return_norm=False)
+
     label_result_map = {-1: 'loss', 0: 'draw', 1: 'win'}
     run_and_plot_TSNE(X_df = X_game_team_df, Y_df = Y_game_team_result_df, label_map = label_result_map, plot_fname = 'game_team_result_tsne.pdf', title_str = 'T-SNE on team feature vectors, colored by game result')
+
+    run_and_plot_TSNE(X_df = X_norm_game_team_df, Y_df = Y_game_team_result_df, label_map = label_result_map, plot_fname = 'NORM_game_team_result_tsne.pdf', title_str = 'T-SNE on team feature vectors (normalized), colored by game result')
+
 
     label_teamId_map = {}
 
@@ -113,6 +122,7 @@ if __name__ == '__main__':
 
     run_and_plot_TSNE(X_df = X_game_team_df, Y_df = Y_game_team_teamID_df, label_map = label_teamId_map, plot_fname = 'game_team_teamId_tsne.pdf', title_str = 'T-SNE on team feature vectors, colored by team id')
 
+    run_and_plot_TSNE(X_df = X_norm_game_team_df, Y_df = Y_game_team_teamID_df, label_map = label_teamId_map, plot_fname = 'NORM_game_team_teamId_tsne.pdf', title_str = 'T-SNE on team feature vectors (normalized), colored by team id')
 
     
      
