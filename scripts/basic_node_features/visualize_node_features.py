@@ -104,5 +104,16 @@ if __name__ == '__main__':
     Y_game_team_teamID_df = simple_game_team_features_df['team_id']
 
     label_result_map = {-1: 'loss', 0: 'draw', 1: 'win'}
-
     run_and_plot_TSNE(X_df = X_game_team_df, Y_df = Y_game_team_result_df, label_map = label_result_map, plot_fname = 'game_team_result_tsne.pdf', title_str = 'T-SNE on team feature vectors, colored by game result')
+
+    label_teamId_map = {}
+
+    for team_id in set(simple_game_team_features_df['team_id']):
+        label_teamId_map[team_id] = 'team ' + str(team_id)
+
+    run_and_plot_TSNE(X_df = X_game_team_df, Y_df = Y_game_team_teamID_df, label_map = label_teamId_map, plot_fname = 'game_team_teamId_tsne.pdf', title_str = 'T-SNE on team feature vectors, colored by team id')
+
+
+    
+     
+
