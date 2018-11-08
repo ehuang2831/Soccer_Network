@@ -12,8 +12,8 @@ import pandas
 
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
-
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
 
 # configure paths
 ####################
@@ -78,6 +78,23 @@ if __name__ == '__main__':
         print ' '
         print X_test.shape, y_test.shape
 
+
+        print 'START LOGISTIC REGRESSION'
+        clf = LogisticRegression(random_state=0, solver='lbfgs', multi_class='multinomial').fit(X_train, y_train)
+
+        #print clf.predict(X[:2, :])
+        #print clf.predict_proba(X[:2, :]) 
+
+        print 'TRAIN SCORE'
+        print clf.score(X_train, y_train)
+        print ' '
+
+        print 'TEST SCORE'
+        print clf.score(X_test, y_test)
+        print ' '
+        
+        print ' '
+        print ' '
 
 
 
