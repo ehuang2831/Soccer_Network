@@ -12,13 +12,9 @@ The EPL dataset consists of a single season in 2012, consisting of 380 matches b
 \subsection{Graph Structure}
 The team structure within a given match is represented as a weighted, directed graph, where nodes are players and edges are actions (pass, kick, etc.). Our initial networks also include additional event nodes to represent non-player states such as the gaining of the ball, the loss of a possession, and a shot taken. Respectively these are named ``Gain'', ``Loss'', ``Shot'', and ``Goal''. 
 
-\begin{enumerate}
+\tu{Nodes:}  14 to 17 nodes consist of 11 players from each team plus events and substitute players. As of now we encode no additional information on the nodes except for ID, but will eventually add in position, location, and time played. 
 
-    \item \tu{Nodes:}  14 to 17 nodes consist of 11 players from each team plus events and substitute players. As of now we encode no additional information on the nodes except for ID, but will eventually add in position, location, and time played. 
-
-    \item \tu{Edges:} Actions between states where the ball is located. If player (node) A passed to player (node B) some amount of times within a game, a passing edge is created. Concurrently, shot, gain, and loss rates are also used to connect player nodes to event nodes. The weights on the edges can be formulated as follows: 
-
-\end{enumerate}
+\tu{Edges:} Actions between states where the ball is located. If player (node) A passed to player (node B) some amount of times within a game, a passing edge is created. Concurrently, shot, gain, and loss rates are also used to connect player nodes to event nodes. The weights on the edges can be formulated as follows: 
 
 \begin{enumerate}
 
@@ -37,8 +33,14 @@ Networks currently in production represent a single team in a single game, such 
 \begin{enumerate}
     \item Single game networks with 2 teams. Each team is connected through respective losses and gains of possessions, transforming original ``Gain'' and ``Loss'' nodes into ``Switch'' nodes.
 
-    \item Aggregated team network consisting of data within a whole season. Each team’s individual networks is aggregated across all games, giving one unique network per team. Rates are now based on total time rather time in a game. 
+    \item Aggregated team network consisting of data within a whole season. Each team's individual networks is aggregated across all games, giving one unique network per team. Rates are now based on total time rather time in a game. 
 \end{enumerate}
+
+\subsection{Data Processing}
+
+Our initial code processes the play-by-play using 2 pointers that track players making actions, and players receiving actions. Time on field is measured through substitution events, where in the event a substitution doesn’t occur, the player is assumed to have played the whole game. These counts of actions are stored in a dictionary representing an edge list where keys are tuples of player IDs. The time metrics are then used to transform these dictionary components into rates. Additional information tracked include team, home vs away status, goals, winning team, and match id. 
+
+As a sanity check, we plotted the distribution of goals across a season for EPL players that scored at least once. Figure 2 shows a reasonable distribution between 1 goal (the mode) and a maximum of 26 per-player season goals. The edge list dictionary is used to create a passing-rate weighted TNEANet graph in snap. 
 
 
 
