@@ -16,10 +16,24 @@ We implemented t-SNE using python's  sklearn package and visualized the embeddin
 
 We rigorously applied t-SNE using best practices such as sample normalization to account for the different scales of input variables. Initially, we found a few clusters, though they did not separate based on our desired goal of predicting game outcome.
 
+
 Upon further analysis of nodes in each cluster, we realized that the clusters corresponded to cases where teams had 14,15,16, or 17 players overall due to substitutions. Also, we sometimes saw two clusters, which were later learned to be for `home' and `away' games but were still not predictive of game result. Examples of such uninformative clusters are provided below. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\textwidth]{plots/game_NORM_tsne.pdf}
+  \caption{T-SNE shows uninformative clusters based on number of players and home/away status.}
+\end{figure}
 
 
 However, when omitting number of players or home/away team status, we realized t-SNE did not help in clustering the data, as shown below. For the final project, we need to create more informative feature vectors by incorporating player position (Striker etc), playing with parameters of node2vec. Crucially, rather than simply averaging individual player feature vectors, we must incorporate them individually or learn more predictive features from them. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.45\textwidth]{plots/node2vec_NORM_game_team_teamId_tsne.pdf}
+  \caption{T-SNE without confounding features illustrates game result and team styles are hard to predict with current feature vectors.}
+\end{figure}
+
 
 \subsection{Game Result Prediction using Feature Vectors}
 Despite the t-SNE results showing minimal predictive power for the current feature vectors, we implemented a simple logistic regression (LR) model that modelled multinomial game outcome based on a concatenation of home team and away team's feature vectors. We employed stratified sampling based on team ID to ensure each team had fair representation both in the training dataset of 304 matches and testing set of 76 matches. 
