@@ -1,0 +1,86 @@
+\documentclass[newfonts=false,format=sigconf,10pt,letterpaper]{acmart}
+\usepackage{times}
+\usepackage{geometry}
+\input{sections/preamble.tex}
+ 
+\usepackage{hyperref}
+\usepackage{balance}
+
+\hypersetup{pdfstartview=FitH,pdfpagelayout=SinglePage}
+
+\setlength\paperheight {11in}
+\setlength\paperwidth {8.5in}
+\setlength{\textwidth}{7in}
+\setlength{\textheight}{9.25in}
+\setlength{\oddsidemargin}{-.25in}
+\setlength{\evensidemargin}{-.25in}
+
+\topmargin -0.5in
+\headheight 0pt
+\textheight 9.25in
+\settopmatter{printacmref=false}
+\fancyhead{}
+
+\begin{document}
+
+%%%%%%%%%%%%%  ABSTRACT GOES HERE %%%%%%%%%%%%%%
+%\begin{abstract}
+%	\label{sec:abstract}
+%	%\input{sections/abstract.tex}
+%\end{abstract}
+
+%%%%%%%%%%%% THIS IS WHERE WE PUT IN THE TITLE AND AUTHORS %%%%%%%%%%%%
+\title{Graph Analysis of Major League Soccer Networks: CS224W Milestone}
+
+\author{Evan Huang}
+\affiliation{%
+	\institution{Stanford University}
+}
+\email{ehuang@stanford.edu}
+
+\author{Sandeep P. Chinchali}
+\affiliation{%
+	\institution{Stanford University}
+}
+\email{csandeep@stanford.edu}
+
+\maketitle
+
+%%%%%%%%%%%%%  INTRO %%%%%%%%%%%%%%
+\section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:introduction}
+\input{sections/intro}
+
+\section{Related Work}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:related_work}
+\input{sections/related_work}
+
+\section{Dataset and Graph Structure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:dataset}
+\input{sections/dataset}
+
+\section{Graph Analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:evaluation}
+
+\section{Future Work}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:discussion}
+
+\section{Future Research Directions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\label{sec:future_research}
+
+
+%\section*{Acknowledgments}
+\balance
+\bibliographystyle{abbrv} 
+\begin{small}
+\bibliography{ref/soccer_graph.bib}
+\end{small}
+
+\end{document}
+
