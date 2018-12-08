@@ -1,4 +1,0 @@
-We hope to expand our work to get better predictive and analytical results. We see some success with clustering, but want to try additional feature embeddings and clustering methods. One clustering task to be done is the clustering of individual node embeddings to determine player ``roles''. These roles within a network may lead to some predictive power regarding team performance. We can compare the impact of labeling network roles vs. given roles (striker, midfielder, goalkeeper, etc) within the dataset by running different predictive models on them. 
-
-We also hope to implement our initial proposal ideas. That is, we want to use more complicated predictive models that may incorporate nonlinearity in classification. Other graph based models, like graph convolutional neural networks (GCNs) would also be interesting to look at, though may be limited by the dataset size.  
-
