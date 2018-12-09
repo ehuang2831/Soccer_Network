@@ -46,6 +46,8 @@ Given our data construction, we now need a GCN implementation that makes sense. 
     \item Softmax Layer
 \end{enumerate}
 
+
+
 \subsection{GCN Results on Random Path Data:}
 
 The GCN was trained using cross entropy loss, stochastic gradient descent with learning rate 0.02 and momentum 0.8, and 100 epochs with batch size 60. Given these parameters, the training accuracy started at 30\% and slowly moved up to 66\% before dropping back down. This signals potential problems with the optimizer, and a decreasing learning rate should be adopted. On the test set this GCN achieved 62\% accuracy. 
