@@ -3,10 +3,7 @@ Our dataset consists of 6 seasons of ``play-by-play'' soccer games from major pr
 We collected the annotated data from OPTA, a sports analytics company, which ensured data fidelity and annotated player actions (passing, aerial shots) using uniform video annotation techniques. Overall, the dataset consists of 2,280 games from  players across 60 diverse teams, leading to  3,893,304 player actions (rows). Since only one player is considered in each timestep, we can identify player A passed to player B by considering the action and players in successive timestamps.  
 
 \subsection{EPL Dataset}
-To prototype our methods, we have only tested our analysis on the EPL dataset.
-For the final project, we will repeat the analysis for all leagues, cluster playing styles across leagues, and compare node feature vectors between leagues.
-
-The EPL dataset consists of a single season in 2012, consisting of 380 matches between 20 teams, such as Liverpool, Manchester United, Southampton, etc. The dataset consists of 648,883 unique plays made by 524 unique players, who are annotated to have 5 positions of Strikers, Defenders, Midfielders, Goalkeepers, and Substitutes. Each play is annotated using a standardized vocabulary of 46 actions, including `Goals' and `Interceptions'.
+We test our models on the EPL dataset before aggregating other datasets. The EPL dataset consists of a single season in 2012, consisting of 380 matches between 20 teams, such as Liverpool, Manchester United, Southampton, etc. The dataset consists of 648,883 unique plays made by 524 unique players, who are annotated to have 5 positions of Strikers, Defenders, Midfielders, Goalkeepers, and Substitutes. Each play is annotated using a standardized vocabulary of 46 actions, including `Goals'' and `Interceptions''.
 
 
 \subsection{Graph Structure}
@@ -42,15 +39,15 @@ The team structure within a given match is represented as a weighted, directed g
   \caption{Per-player goal distribution across a season.}
 \end{figure}
 
-
-
-Networks currently in production represent a single team in a single game, such as:
+Two additional networks were considered to represent a single team in a single game, such as:
 
 \begin{enumerate}
     \item Single game networks with 2 teams. Each team is connected through respective losses and gains of possessions, transforming original ``Gain'' and ``Loss'' nodes into ``Switch'' nodes.
 
-    \item Aggregated team network consisting of data within a whole season. Each team's individual networks is aggregated across all games, giving one unique network per team. Rates are now based on total time rather time in a game. 
+    \item Aggregated team network consisting of data within a whole season. Each team's individual networks is aggregated across all games, giving one unique network per team. Rates are now based on total time rather than time in a game. 
 \end{enumerate}
+
+Ultimately, we decided to use our single game structure for predictive purposes. That is, we want to know whether the simple network created retains enough information to accurately predict game results. 
 
 \subsection{Data Processing}
 

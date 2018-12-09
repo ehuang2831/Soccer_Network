@@ -5,7 +5,8 @@ Our first embedding, which we call simple or hand-crafted features, sets the ave
 
 Our second embedding uses node2vec with default parameters (128 dimensions, 80 length walk, 10 walks per source, weighted directed graph) to retrieve a feature vector per node. The feature vectors are then averaged to obtain a feature vector for a graph. 
 
-Our current node aggregation technique is simple, but may lose a lot of information. Therefore for future work, we hope to learn more rich, higher-order interactions between players, perhaps using a GCN with data from more leagues.
+Our current node aggregation technique is simple, but may lose a lot of information. 
+Therefore, we hope to learn more rich, higher-order interactions between players, using a more complex model such as a  GCN.
 
 \subsection{Graph Clustering Based on Feature Vectors}
 Given both simple hand-crafted features and those from node2vec per team, we wish to cluster them to discover latent relationships or whether they aggregate based on outcome (`win', `loss', `draw') or team identity. Since each team plays 20 games, we have several realizations of a team's playing style.
@@ -26,7 +27,10 @@ Upon further analysis of nodes in each cluster, we realized that the clusters co
 \end{figure}
 
 
-However, when omitting number of players or home/away team status, we realized t-SNE did not help in clustering the data, as shown below. For the final project, we need to create more informative feature vectors by incorporating player position (Striker etc), playing with parameters of node2vec. Crucially, rather than simply averaging individual player feature vectors, we must incorporate them individually or learn more predictive features from them. 
+However, when omitting number of players or home/away team status, we realized t-SNE did not help in clustering the data, as shown below. 
+Crucially, rather than simply averaging individual player feature vectors, we 
+will subsequently learn more predictive features from them using GCNs.
+
 
 \begin{figure}[h]
   \centering
@@ -42,11 +46,11 @@ For simple feature vectors, the LR test set accuracy was 43\% and 48\% on traini
 
 As a sanity check of our LR implementation, including the goal differential to predict game outcome yielded 100\% accuracy, but obviously this variable cannot be used. Overall, our results indicate we needed richer features, need to learn higher order interactions between players, and incorporate data from many other leagues besides the EPL.
 
-\subsection{Addressing Comments from Project Proposal}
-The principal comment from the project proposal, where we wanted to use Graph CNN approaches, was to try node2vec and non deep-learning based approaches due to our limited dataset size. Further, the reviewers anticipated predicting game results to be hard and to focus on clustering teams via learned node features. 
-
-As suggested, we used intuition on soccer dynamics and node2vec to create features and cluster them, which still were not predictive of game results. However, we plan to use significantly more data from several leagues, which allows us to cluster diverse playing styles. Further, we will analyze the temporal nature of each game by creating different passing rates per time window. We find this idea promising since it elicits various playing styles, such as being conservative at the start of a game to aggressive when a team is losing and there is minimal time left.
-
-
-
-
+%\subsection{Addressing Comments from Project Proposal}
+%The principal comment from the project proposal, where we wanted to use Graph CNN approaches, was to try node2vec and non deep-learning based approaches due to our limited dataset size. Further, the reviewers anticipated predicting game results to be hard and to focus on clustering teams via learned node features. 
+%
+%As suggested, we used intuition on soccer dynamics and node2vec to create features and cluster them, which still were not predictive of game results. However, we plan to use significantly more data from several leagues, which allows us to cluster diverse playing styles. Further, we will analyze the temporal nature of each game by creating different passing rates per time window. We find this idea promising since it elicits various playing styles, such as being conservative at the start of a game to aggressive when a team is losing and there is minimal time left.
+%
+%
+%
+%
