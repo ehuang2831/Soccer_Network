@@ -1,4 +1,4 @@
-1. pipeline diagram
+1. pipeline diagram [DONE]
 
 2. distro of goals per team across season, overlaid
 
@@ -6,5 +6,5 @@
 
 4. KNN section
 
-5. conclusion
+5. conclusion [DONE]
 
