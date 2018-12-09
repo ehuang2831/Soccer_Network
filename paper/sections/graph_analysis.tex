@@ -1,3 +1,9 @@
+\begin{figure*}[h]
+  \centering
+  \includegraphics[width=0.95\textwidth]{plots/soccer_block_diagram.pdf}
+  \caption{Soccer network analysis pipeline starting from (1) play-by-play data, (2) passing rate graph extraction, (3) feature embedding, (4) clustering, and finally (5) game result prediction. We compared the predictive utility of simple, domain-specific features with complex ones learned by Graph Convolutional Networks (GCNs).}
+\end{figure*}
+
 \subsection{Feature Learning: Node Embeddings}
 Given our goal to predict game results and/or analyze teams effectively, we want to learn node embeddings from our graphs. So far, we've performed two types of node embeddings with one of them as a baseline. Our goal is to keep working with different embedding strategies and parameters to increase both predictive and classifying powers. 
 
