@@ -18,7 +18,7 @@ Therefore, we hope to learn more rich, higher-order interactions between players
 \subsection{Graph Clustering Based on Feature Vectors}
 Given both simple hand-crafted features and those from node2vec per team, we wish to cluster them to discover latent relationships or whether they aggregate based on outcome (`win', `loss', `draw') or team identity. Since each team plays 20 games, we have several realizations of a team's playing style.
 
-We used the standard t-SNE method for clustering since it can be projected to two dimensions for easy visualization. Further, its probabilistic assignment of cluster membership is attractive in the soccer context since teams likely have dynamic playing styles based on their opponent, current substitutions, and even whether they are the home team.
+We used the standard t-SNE method [9] for clustering since it can be projected to two dimensions for easy visualization. Further, its probabilistic assignment of cluster membership is attractive in the soccer context since teams likely have dynamic playing styles based on their opponent, current substitutions, and even whether they are the home team.
 
 We implemented t-SNE using python's  sklearn package and visualized the embeddings in two dimensions for both simple and node2vec features. Per feature set, we ran t-SNE twice, once on a matrix where rows where matches and columns where a single team's features, and again where rows where matches and columns concatenated both the home and away team's vectors. The latter is more useful to predict outcome since it contrasts the playing style of both teams.
 
