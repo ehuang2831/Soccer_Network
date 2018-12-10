@@ -1,0 +1,103 @@
+\documentclass{article}
+\input{sections/sysML_preamble.tex}
+
+\hypersetup{pdfstartview=FitH,pdfpagelayout=SinglePage}
+
+\sysmltitlerunning{DeepCut SysML}
+\title{Neural Networks Meet Physical Networks: Figures Only}
+
+\begin{document}
+\sloppy
+
+%%%%%%%%%%%% THIS IS WHERE WE PUT IN THE TITLE AND AUTHORS %%%%%%%%%%%%
+%\title{Neural Networks Meet Physical Networks: Extended AI Version}
+\author{TBD}
+
+\maketitle
+\input{sections/block_diagram_figures.tex}
+
+\begin{tabular}{lll}
+    \hline\noalign{\smallskip}
+    first & second & third  \\
+    \noalign{\smallskip}\hline\noalign{\smallskip}
+    A & 
+    \begin{tabular}{c}C \\CC\end{tabular}
+    & E \\
+    B & 
+    \begin{tabular}{c}D \\DD\end{tabular}
+    & F \\
+    \noalign{\smallskip}\hline
+\end{tabular}
+
+\begin{tabular}{l | l | l | l}
+    \hline\noalign{\smallskip}
+    \rowcolor{gray!20}
+    Stage & Result & Correct & Incorrect  \\
+    \noalign{\smallskip}\hline\noalign{\smallskip}
+    \rowcolor{green!20}
+    Difference Detector & 
+    \begin{tabular}{c}Filtered Out \\ Passed\end{tabular}
+    & \begin{tabular}{c} x1\% \\ x1\% \end{tabular}
+    & \begin{tabular}{c} y1\% \\ y1\% \end{tabular} \\
+    \rowcolor{blue!20}
+    Offloader & 
+    \begin{tabular}{c} Kept at Edge \\ Offloaded \end{tabular}
+    & \begin{tabular}{c}x2\% \\ x2\% \end{tabular}
+    & \begin{tabular}{c}y2\% \\ y2\% \end{tabular} \\
+    \noalign{\smallskip}\hline
+\end{tabular}
+
+% did not work
+%\begin{table}
+%    \begin{tabular}{l | a | b | a | b}
+%    \hline
+%    \rowcolor{LightCyan}
+%    \mc{1}{}  & \mc{1}{x} & \mc{1}{y} & \mc{1}{w} & \mc{1}{z} \\
+%    \hline
+%    variable 1 & a & b & c & d \\
+%    variable 2 & a & b & c & d \\ \hline
+%    \end{tabular}
+%\end{table}
+
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|>{\columncolor[gray]{0.8}}c|c|c|c|c|c|c|c|}
+        \hline
+        128&64&32&16&8&4&2&1\\\hline
+        1&0&1&1&0&1&0&1\\\hline
+        1&0&1&1&0&1&0&1\\\hline
+    \end{tabular}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|>{\columncolor[gray]{0.6}}c|>{\columncolor[gray]{0.7}}c|>{\columncolor[gray]{0.9}}c|>{\columncolor[gray]{0.6}}c}
+        \hline
+        BW & Offload & Oracle & All-edge & All-cloud\\\hline
+        1 & (mAP, \%, BW) & x1 & y1 & z1  \\\hline
+        3 & 0 & z3 & y3 & z3  \\\hline
+        5 & 0 & x5 & y5 & z5  \\\hline
+        7 & 0 & x7 & y7 & z7  \\\hline
+    \end{tabular}
+\end{table}
+
+
+\begin{figure}[h]
+	\small {
+	%\begin{tabular}{ |p{1.8cm}|>{\columncolor{TealBlue!20}}c|>{\columncolor{YellowGreen!20}}c|>{\columncolor{CornflowerBlue!20}}c| p{1.8cm}| }
+	\begin{tabular}{ |p{1.8cm}|>{\columncolor{TealBlue!20}}c|>{\columncolor{YellowGreen!20}}c|>{\columncolor{CornflowerBlue!20}}c| c| }
+		\hline
+		\textbf{DNN} & \textbf{Accuracy (mAP)} & \textbf{Size} & \textbf{Inf. Time} & \textbf{Src}\\ 
+		\hline
+		MobileNet v2 & 22 & 67 MB & 31 ms & Google \\
+		\hline
+		\maskrcnn  & 45.2 & 1.6GB & 325 ms & Facebook \\
+		\hline
+	\end{tabular}
+	}
+	\caption{MS-COCO accuracy, size, and speed tradeoffs of DNNs.}
+	\label{fig:DNN_table}
+\end{figure}
+
+\end{document}
