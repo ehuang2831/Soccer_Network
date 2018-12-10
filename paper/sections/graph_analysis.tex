@@ -1,8 +1,8 @@
 \begin{figure*}[h]
-  \label{fig:block_diagram}
   \centering
   \includegraphics[width=0.95\textwidth]{plots/soccer_block_diagram.pdf}
   \caption{Soccer network analysis pipeline starting from (1) play-by-play data, (2) passing rate graph extraction, (3) feature embedding, (4) clustering, and finally (5) game result prediction. We compared the predictive utility of simple, domain-specific features with complex ones learned by Graph Convolutional Networks (GCNs).}
+  \label{fig:block_diagram}
 \end{figure*}
 
 \subsection{Feature Learning: Node Embeddings}
@@ -31,6 +31,7 @@ Upon further analysis of nodes in each cluster, we realized that the clusters co
   \centering
   \includegraphics[width=0.45\textwidth]{plots/game_NORM_tsne.pdf}
   \caption{T-SNE shows uninformative clusters based on number of players and home/away status.}
+    \label{fig:tsne_game}
 \end{figure}
 
 
@@ -44,6 +45,7 @@ will subsequently learn more predictive features from them using GCNs.
   \centering
   \includegraphics[width=0.45\textwidth]{plots/node2vec_NORM_game_team_teamId_tsne.pdf}
   \caption{T-SNE without confounding features illustrates game result and team styles are hard to predict with current feature vectors.}
+    \label{fig:tsne_team}
 \end{figure}
 
 
@@ -53,36 +55,6 @@ Despite the t-SNE results showing minimal predictive power for the current featu
 For simple feature vectors, the LR test set accuracy was 43\% and 48\% on training data. For node2vec features, the performance was similarly bad, with test set accuracy of 38\%. 
 
 As a sanity check of our LR implementation, including the goal differential to predict game outcome yielded 100\% accuracy, but obviously this variable cannot be used. Overall, our results indicate we needed richer features, need to learn higher order interactions between players, and incorporate data from many other leagues besides the EPL. Our whole soccer analysis pipeline is available on GitHub at \texttt{\url{https://github.com/ehuang2831/Soccer_Network.git}}.
-
-%\begin{figure}[h]
-%  \label{fig:results_table}
-%  \centering
-%    \begin{tabular}{l | l | l | l}
-%        \hline\noalign{\smallskip}
-%        \rowcolor{gray!20}
-%        Features & Predictor & Test Accuracy & Incorrect  \\
-%        \noalign{\smallskip}\hline\noalign{\smallskip}
-%        \rowcolor{green!20}
-%        Simple & 
-%        \begin{tabular}{c} Logistic \\ SVM \end{tabular}
-%        & \begin{tabular}{c} x1\% \\ x1\% \end{tabular}
-%        & \begin{tabular}{c} y1\% \\ y1\% \end{tabular} \\
-%        \rowcolor{blue!20}
-%        node2vec & 
-%        \begin{tabular}{c} Logistic \\ SVM \end{tabular}
-%        & \begin{tabular}{c}x2\% \\ x2\% \end{tabular}
-%        & \begin{tabular}{c}y2\% \\ y2\% \end{tabular} \\
-%        \rowcolor{purple!20}
-%        Graph CNN & 
-%        \begin{tabular}{c} Logistic \\ SVM \end{tabular}
-%        & \begin{tabular}{c}x2\% \\ x2\% \end{tabular}
-%        & \begin{tabular}{c}y2\% \\ y2\% \end{tabular} \\
-%
-%        \noalign{\smallskip}\hline
-%    \end{tabular}
-%  \caption{Overall results illustrating various node feature embeddings and their predictive power for game prediction outcome. Graph CNNs provide the best test set accuracy, but still are not highly accurate predictors of soccer game outcome, which is a complex problem.}
-%\end{figure}
-%
 
 \begin{figure}[h]
   \label{fig:results_table}
@@ -99,6 +71,7 @@ As a sanity check of our LR implementation, including the goal differential to p
         Graph CNN & GCN Softmax & 62 \% \\ 
     \end{tabular}
   \caption{Overall results illustrating various node feature embeddings and their predictive power for game prediction outcome. Graph CNNs provide the best test set accuracy, but still are not highly accurate predictors of soccer game outcome, which is a complex problem.}
+    \label{fig:results_table}
 \end{figure}
 
 
