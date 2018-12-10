@@ -1,0 +1,34 @@
+% for document class article
+\usepackage{epsfig}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{graphicx}
+\usepackage{stackengine}
+\usepackage{subfigure}
+\usepackage{algorithmic,comment}
+\usepackage[ruled,vlined,commentsnumbered,titlenotnumbered]{algorithm2e}
+\usepackage{float}
+
+% from online
+\usepackage{xcolor}
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}}
+\SetCommentSty{mycommfont}
+
+\usepackage{colortbl}
+\usepackage{xcolor}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+
+
+%% Color text for in situ comments:
+\usepackage{color}
+\newcommand{\SC}[1]{{\color{blue}#1}}
+\newcommand{\tu}[1]{{\underline{\textit{#1}}}}
+
+% Changes to algorithm formatting
+\renewcommand{\algorithmiccomment}[1]{ //#1}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\newtheorem{definition}{Definition}
+\newtheorem{remark}{Remark}

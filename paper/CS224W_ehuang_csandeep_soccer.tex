@@ -1,7 +1,9 @@
-\documentclass[newfonts=false,format=sigconf,10pt,letterpaper]{acmart}
+\documentclass[twoside,twocolumn]{article}
+%\documentclass[newfonts=false,format=sigconf,10pt,letterpaper]{acmart}
 \usepackage{times}
 \usepackage{geometry}
 \input{sections/preamble.tex}
+\usepackage{authblk}
  
 \usepackage{hyperref}
 \usepackage{balance}
@@ -18,8 +20,20 @@
 \topmargin -0.5in
 \headheight 0pt
 \textheight 9.25in
-\settopmatter{printacmref=false}
-\fancyhead{}
+%\settopmatter{printacmref=false}
+%\fancyhead{}
+
+
+
+
+
+
+
+
+
+
+
+
 
 \begin{document}
 
@@ -31,19 +45,28 @@
 
 %%%%%%%%%%%% THIS IS WHERE WE PUT IN THE TITLE AND AUTHORS %%%%%%%%%%%%
 \title{Graph Analysis of Major League Soccer Networks: CS224W Final Project}
+%\author{
+%Evan Huang \\
+%\normalsize {Stanford University} \\
+%\normalsize \href{ehuang@stanford.edu} \\
+%and
+%Sandeep P. Chinchali
+%\normalsize {Stanford University} \\
+%\normalsize \href{csandeep@stanford.edu} \\
+%}
+%
 
-\author{Evan Huang}
-\affiliation{%
-	\institution{Stanford University}
-}
-\email{ehuang@stanford.edu}
+\author[1]{Evan Huang}
+\author[2]{Sandeep Chinchali}
+\affil[1]{Stanford University}
+\affil[2]{Stanford University}
 
-\author{Sandeep P. Chinchali}
-\affiliation{%
-	\institution{Stanford University}
-}
-\email{csandeep@stanford.edu}
 
+%\affiliation{%
+%	\institution{Stanford University}
+%}
+%\email{csandeep@stanford.edu}
+%
 \maketitle
 
 %%%%%%%%%%%%%  INTRO %%%%%%%%%%%%%%

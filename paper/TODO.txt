@@ -1,10 +1,12 @@
 1. pipeline diagram [DONE]
 
-2. distro of goals per team across season, overlaid
+2. distro of goals per team across season, overlaid [seaborn]
 
-3. latex template
+3. latex template [KEY]
 
 4. KNN section
 
 5. conclusion [DONE]
+
+6. reference different figures, make more readable [DONE]
 
