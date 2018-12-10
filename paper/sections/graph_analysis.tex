@@ -54,10 +54,12 @@ Despite the t-SNE results showing minimal predictive power for the current featu
 
 For simple feature vectors, the LR test set accuracy was 43\% and 48\% on training data. For node2vec features, the performance was similarly bad, with test set accuracy of 38\%. 
 
-As a sanity check of our LR implementation, including the goal differential to predict game outcome yielded 100\% accuracy, but obviously this variable cannot be used. Overall, our results indicate we needed richer features, need to learn higher order interactions between players, and incorporate data from many other leagues besides the EPL. Our whole soccer analysis pipeline is available on GitHub at \texttt{\url{https://github.com/ehuang2831/Soccer_Network.git}}.
+As a sanity check of our LR implementation, including the goal differential to predict game outcome yielded 100\% accuracy, but obviously this variable cannot be used. Since support-vector machines can often have
+better performance on complex datasets that logistic regression (LR), we used SVM classification [10] on node2vec features. Our results, summarized in Figure \ref{fig:results_table}, illustrate SVMs did marginally better than LR on node2vec features with a test set accuracy of 47 \%.
+
+Overall, our results indicate we needed richer features, need to learn higher order interactions between players, and incorporate data from many other leagues. Our whole soccer analysis pipeline is available on GitHub at \texttt{\url{https://github.com/ehuang2831/Soccer_Network.git}}.
 
 \begin{figure}[h]
-  \label{fig:results_table}
   \centering
     \begin{tabular}{l | l | l}
         \rowcolor{gray!20}
