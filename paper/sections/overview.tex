@@ -7,4 +7,20 @@ A principal contribution of our project is to use hard-to-obtain, high quality p
 to compare the predictive power of simple features with those based on random walk simulations and deep learning.
 
 \tu{Paper organization}:
-The rest of our paper is organized as follows. In particular, our overall soccer graph analysis pipeline is illustrated in Figure \ref{fig:block_diagram}.
+The rest of our paper is organized as follows. In particular, our overall soccer graph analysis pipeline is illustrated in Figure \ref{fig:block_diagram}:
+
+\begin{enumerate}
+
+\item \textbf{Graph Creation}:
+
+We describe our data sanitization and graph creation process in Section \ref{sec:dataset}, with an example graph in Figure \ref{fig:example_graph} and basic dataset statisics in Figure \ref{fig:per_player_goal_distro}.
+
+\item \textbf{Node Feature Embeddings:}
+In Section \ref{sec:graph_analysis}, we introduce a variety of techniques to learn key features of nodes that are used to predict game outcome, summarized in the overall results table of Figure \ref{fig:results_table}. We also investigate whether these features are discriminative enough to cluster games using t-SNE by either game outcome (Figure \ref{fig:tsne_game}) or team identity (Figure \ref{fig:tsne_team}).
+
+\item \textbf{Graph Convolutional Neural Network:}
+Finally, in Section \ref{sec:graph_GCN}, we use a custom random-walk procedure to learn node embeddings using Graph Convolutional Neural Networks (GCNs) that are the best-performing on game outcome prediction.
+
+
+\end{enumerate}
+
