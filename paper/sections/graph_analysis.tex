@@ -6,14 +6,14 @@
 \end{figure*}
 
 \subsection{Feature Learning: Node Embeddings}
-Given our goal to predict game results and/or analyze teams effectively, we want to learn node embeddings from our graphs. So far, we've performed two types of node embeddings with one of them as a baseline. Our goal is to keep working with different embedding strategies and parameters to increase both predictive and classifying powers. 
+Given our goal to predict game results and/or analyze teams effectively, we want to learn node embeddings from our graphs that maximimize predictive and discriminative power.
 
 Our first embedding, which we call simple or hand-crafted features, sets the average pass rate, max pass rate, min pass rate (nonzero), shot rate, gain rate, and loss rate in a vector for each node. We then can assemble a feature vector for a specific graph by averaging the features of the node within the graph. 
 
-Our second embedding uses node2vec with default parameters (128 dimensions, 80 length walk, 10 walks per source, weighted directed graph) to retrieve a feature vector per node. The feature vectors are then averaged to obtain a feature vector for a graph. 
+Our second embedding uses node2vec [7] with default parameters (128 dimensions, 80 length walk, 10 walks per source, weighted directed graph) to retrieve a feature vector per node. The feature vectors are then averaged to obtain a feature vector for a graph. 
 
 Our current node aggregation technique is simple, but may lose a lot of information. 
-Therefore, we hope to learn more rich, higher-order interactions between players, using a more complex model such as a  GCN.
+Therefore, we hope to learn more rich, higher-order interactions between players, using a more complex model such as a  GCN [2,6].
 
 \subsection{Graph Clustering Based on Feature Vectors}
 Given both simple hand-crafted features and those from node2vec per team, we wish to cluster them to discover latent relationships or whether they aggregate based on outcome (`win', `loss', `draw') or team identity. Since each team plays 20 games, we have several realizations of a team's playing style.

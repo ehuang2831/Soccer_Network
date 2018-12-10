@@ -12,7 +12,7 @@ Given the poor results using standard feature extraction techniques and simple m
 
 \end{enumerate}
 
-Thus we turn to a new method. Using related work on GCNs as inspiration, we created a GCN model that iterates a ``sliding window'' across different paths within a network. 
+Thus we turn to a new method. Using related work on GCNs [2,6] as inspiration, we created a GCN model that iterates a ``sliding window'' across different paths within a network. 
 
 \subsection{Construction of GCN Data}
 
@@ -25,7 +25,7 @@ We constructed numerous types of data to train on a GCN. Our initial idea was to
 \end{itemize}
 
 
-Our final data construction took inspiration from node2vec's random walk procedure, and Gibb's sampling. Like node2vec, we simulate a random walk throughout the network but start at the ``Gain'' state. This is essentially the path of the ball during some possession.  We then grab the data for each node along this random walk and add it to the datapoint. We repeat this for 100 steps and 100 trials, giving us a 100x100x4 matrix (similar to Gibb's sampling approaches). We can then use this 100x100x4 matrix as a representation of a graph. Given the randomness of the path sampling, this method should generalize well across epochs of training. Additionally, starting at the ``Gain'' state makes each graph consistent. Consistent sizing (100x100) also simplifies the implementation of the GCN. 
+Our final data construction took inspiration from node2vec's random walk procedure, and Gibbs sampling [8]. Like node2vec, we simulate a random walk throughout the network but start at the ``Gain'' state. This is essentially the path of the ball during some possession.  We then grab the data for each node along this random walk and add it to the datapoint. We repeat this for 100 steps and 100 trials, giving us a 100x100x4 matrix (similar to Gibb's sampling approaches). We can then use this 100x100x4 matrix as a representation of a graph. Given the randomness of the path sampling, this method should generalize well across epochs of training. Additionally, starting at the ``Gain'' state makes each graph consistent. Consistent sizing (100x100) also simplifies the implementation of the GCN. 
 
 Given our data construction, we now need a GCN implementation that makes sense. We use the generic structure in CNNs: a number of convolutional layers with pooling, then fully connected layers. For our response we use win, loss, or draw. Given the random path data construction, we are trying to learn how different types of n-hop paths contribute to game results. We therefore use a non-traditional sliding window of (1,n) to learn this. This sliding window does not work on multiple paths at the same time, as we want parameter sharing across individual paths in each datapoint. The aggregation comes in the pooling layers where both average pooling and max pooling were tested. Our exact model parameters and layers are as follows: 
 
