@@ -1,8 +1,5 @@
 # Soccer_Network
 
-In ~/.bashrc, add the environment variable ROOT_SOCCER_DIR used in python scripts
+Incorporates Network Analysis with Soccer play-by-play data. 
 
-export ROOT_SOCCER_DIR='/Users/csandeep/Documents/stanford/classes/2018/CS224W/code/project/Soccer_Network/'
-
-1. Run utils/unit_test.py
-
+Given the natural existence of networks in team- based sports, we hope to use network analysis and predictive modeling to better analyze soccer. Currently, research in soccer analytics has focused on individual player statistics, and predictive modeling has been limited to simple logistic regression, decision trees, and LSTMs. We believe that leveraging network structure will create better results given the importance of teamwork within the sport.
